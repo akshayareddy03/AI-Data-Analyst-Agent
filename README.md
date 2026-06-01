@@ -50,14 +50,10 @@ python app.py
 6. Receive AI-powered insights and recommendations.
 
 ## Home Page
-![HOME](home.png)
+![HOME](screenshots/home.png)
 
 ## AI Analysis
-
-![AI ANALYSIS](details.png)
+![AI ANALYSIS](screenshots/aianalysis.png)
 
 ## Charts Dashboard
-
-![CHARTS](charts.png)
-
-
+![CHARTS](screenshots/charts.png)
