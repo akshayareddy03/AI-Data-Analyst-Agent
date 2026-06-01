@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Data Analyst Agent</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>📊 AI Data Analyst Agent</h1>
+
+        <p>
+            Upload datasets, ask AI questions,
+            generate insights and visualize trends instantly.
+        </p>
+
+        <button id="themeBtn">
+            🌙 Dark Mode
+        </button>
+
+    </div>
+
+    <!-- FEATURES -->
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            📁 CSV Upload
+        </div>
+
+        <div class="feature-card">
+            🤖 AI Analysis
+        </div>
+
+        <div class="feature-card">
+            📈 Smart Charts
+        </div>
+
+        <div class="feature-card">
+            💡 Data Insights
+        </div>
+
+    </div>
+
+    <!-- SUCCESS MESSAGE -->
+
+    {% if filename %}
+    <div class="success-box">
+        ✅ File Uploaded Successfully:
+        <strong>{{ filename }}</strong>
+    </div>
+    {% endif %}
+
+    <!-- ERROR MESSAGE -->
+
+    {% if error %}
+    <div class="error-box">
+        ⚠️ {{ error }}
+    </div>
+    {% endif %}
+
+    <!-- FORM -->
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="input-group">
+            <label>📁 Upload CSV File</label>
+
+            <input type="file"
+                   name="file"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label>🤖 Ask AI Question</label>
+
+            <input type="text"
+                   name="question"
+                   placeholder="Example: highest marks, average attendance">
+        </div>
+
+        <button type="submit" id="analyzeBtn">
+            🚀 Analyze Dataset
+        </button>
+
+        <div id="loading" style="display:none;">
+
+            <div class="spinner"></div>
+
+            <p>
+                Analyzing data...
+                Please wait.
+            </p>
+
+        </div>
+
+    </form>
+
+    <!-- STATISTICS -->
+
+    {% if table %}
+
+    <div class="stats-container">
+
+        <div class="stat-card">
+            <h3>Total Rows</h3>
+            <p>{{ total_rows }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Total Columns</h3>
+            <p>{{ total_columns }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Missing Values</h3>
+            <p>{{ missing_values }}</p>
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <!-- DATA QUALITY REPORT -->
+
+    {% if table %}
+
+    <div class="section-card">
+
+        <h2>📋 Data Quality Report</h2>
+
+        <ul>
+            <li>Total Rows: {{ total_rows }}</li>
+            <li>Total Columns: {{ total_columns }}</li>
+            <li>Missing Values: {{ missing_values }}</li>
+            <li>Duplicate Rows: {{ duplicate_rows }}</li>
+        </ul>
+
+    </div>
+
+    {% endif %}
+
+    <!-- DATASET PREVIEW -->
+
+    {% if table %}
+
+    <div class="section-card">
+
+        <h2>📄 Dataset Preview</h2>
+
+        <div class="table-container">
+
+            {{ table | safe }}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <!-- AI RESULT -->
+
+    {% if answer %}
+
+    <div class="section-card">
+
+        <h2>🧠 AI Analysis Result</h2>
+
+        <div class="answer-box">
+
+            {{ answer | safe }}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <!-- CHARTS -->
+
+    {% if charts %}
+
+    <div class="section-card">
+
+        <h2>📊 Smart Visualization Dashboard</h2>
+
+        <div class="charts-grid">
+
+            {% for chart in charts %}
+
+            <div class="chart-card">
+
+                <h3>
+                    {{ chart.replace('.png','').replace('_',' ').title() }}
+                </h3>
+
+                <img src="{{ url_for('static', filename=chart) }}"
+                     alt="{{ chart }}">
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        AI Data Analyst Agent |
+        Flask + Pandas + Smart Visualization
+    </p>
+
+</footer>
+
+<script>
+
+document.querySelector("form").addEventListener("submit", function () {
+
+    document.getElementById("loading").style.display = "block";
+
+    document.getElementById("analyzeBtn").disabled = true;
+
+});
+
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+});
+
+</script>
+
+</body>
+</html>

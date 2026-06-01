@@ -1,0 +1,9 @@
+venv/
+.env
+__pycache__/
+
+static/*.png
+!screenshots/*.png
+
+uploads/*
+!uploads/.gitkeep
