@@ -1,7 +1,5 @@
-# AI Data Analyst Agent
-
-An AI-powered dashboard that analyzes CSV datasets using OpenAI and Pandas.
-# AI Data Analyst Agent
+# AI-Data-Analyst-Agent
+An AI-powered Data Analyst Agent built with Flask, Pandas, Matplotlib and Seaborn for automated CSV analysis, data quality reporting and intelligent visualization.
 
 ## Features                             
 - CSV file Upload
@@ -61,3 +59,5 @@ python app.py
 ## Charts Dashboard
 
 ![CHARTS](charts.png)
+
+
